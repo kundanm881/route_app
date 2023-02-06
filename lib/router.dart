@@ -13,7 +13,6 @@ class AppRouter {
           if (_isFirstTimeStart == true) {
             return '/splashScreen';
           }
-
           return null;
         },
         routes: [

@@ -6,8 +6,8 @@ import 'package:route_app/ui/pages/home/home_page.dart';
 import 'package:route_app/ui/pages/splash_screen/splash_screen_page.dart';
 
 class AppPages {
-  static const String initPage = 'initPage';
-  static const String splashScreen = 'splashScreen';
+  static const String initPage = 'init_page';
+  static const String splashScreen = 'splash_screen';
 }
 
 class AppRouter {
@@ -21,9 +21,10 @@ class AppRouter {
         initialLocation: '/',
         redirect: (context, state) {
           if (isFirstTimeStart == true) {
-            return '/splashScreen';
+            return '/${AppPages.splashScreen}';
+          } else {
+            return null;
           }
-          return null;
         },
         routes: [
           GoRoute(
@@ -35,13 +36,13 @@ class AppRouter {
             ),
           ),
           GoRoute(
-            path: '/splashScreen',
+            path: '/${AppPages.splashScreen}',
             name: AppPages.splashScreen,
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
               child: SplashScreenPage(),
             ),
-          )
+          ),
         ],
       );
 }

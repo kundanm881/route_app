@@ -1,21 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:route_app/res/res.dart';
-import 'package:route_app/ui/pages/splash_screen/splash_pages/splash_page.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../res/splash_icon.dart';
 import 'model/splash_model.dart';
 import 'splash_pages/skip_btn.dart';
+import 'splash_pages/splash_page.dart';
 
-class SplashScreenPage extends StatefulWidget {
-  const SplashScreenPage({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreenPage> createState() => _SplashScreenPageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
+class _SplashScreenState extends State<SplashScreen> {
   final PageController pageController = PageController(initialPage: 0);
 
   List<SplashModel> pages = [
@@ -35,7 +36,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
         title: "Where can I get some"),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +43,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         child: Column(
           children: [
             // Skip button
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, right: 16),
-                child: SkipBtn(pageController: pageController, pages: pages),
-              ),
-            ),
+            SkipBtn(pageController: pageController, pages: pages),
             // Page data
             Expanded(
               child: PageView.builder(
@@ -80,11 +74,5 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
   }
 }

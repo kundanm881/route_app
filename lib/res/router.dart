@@ -2,17 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:route_app/res/app_pages.dart';
 import 'package:route_app/ui/pages/home/home_page.dart';
-import 'package:route_app/ui/pages/splash_screen/splash_screen_page.dart';
-
-class AppPages {
-  static const String initPage = 'init_page';
-  static const String splashScreen = 'splash_screen';
-}
+import 'package:route_app/ui/pages/splash_screen/splash_screen.dart';
 
 class AppRouter {
   static final _key = GlobalKey<NavigatorState>();
-  static GlobalKey<NavigatorState> get nav => _key;
+  static NavigatorState? get nav => _key.currentState!;
+  static BuildContext get navContext => _key.currentContext!;
 
   static bool isFirstTimeStart = true;
 
@@ -40,9 +37,17 @@ class AppRouter {
             name: AppPages.splashScreen,
             pageBuilder: (context, state) => MaterialPage(
               key: state.pageKey,
-              child: SplashScreenPage(),
+              child: SplashScreen(),
             ),
           ),
+          // GoRoute(
+          //   path: '/${AppPages.splashScreen}',
+          //   name: AppPages.splashScreen,
+          //   pageBuilder: (context, state) => MaterialPage(
+          //     key: state.pageKey,
+          //     child: SplashScreenPage(),
+          //   ),
+          // ),
         ],
       );
 }
